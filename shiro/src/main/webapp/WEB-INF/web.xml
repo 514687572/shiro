@@ -3,11 +3,7 @@
 	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
-<<<<<<< HEAD:shiro/src/main/webapp/WEB-INF/web.xml
 	<display-name>shiro</display-name>
-=======
-	<display-name>SpringMVCShiro</display-name>
->>>>>>> 3ad200c0081f9a1da9111dbe416e23f992d6cecb:SpringMVCShiro/src/main/webapp/WEB-INF/web.xml
 	<!-- 起始欢迎界面 -->
 	<welcome-file-list>
 		<welcome-file>/login.do</welcome-file>
@@ -18,11 +14,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 		    classpath:application.xml
-<<<<<<< HEAD:shiro/src/main/webapp/WEB-INF/web.xml
 		    classpath:spring-shiro.xml
-=======
-		    classpath:shiro/spring-shiro.xml
->>>>>>> 3ad200c0081f9a1da9111dbe416e23f992d6cecb:SpringMVCShiro/src/main/webapp/WEB-INF/web.xml
 		</param-value>
 	</context-param>
 	
