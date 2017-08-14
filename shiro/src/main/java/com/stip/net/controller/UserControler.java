@@ -46,11 +46,7 @@ public class UserControler {
 	 */
 	@RequestMapping(value = "/login.do", method = { RequestMethod.POST,RequestMethod.GET})
 	public String tologin(HttpServletRequest request, HttpServletResponse response){
-<<<<<<< HEAD:shiro/src/main/java/com/stip/net/controller/UserControler.java
 		logger.info("来自IP[" + request.getRemoteHost() + "]的访问");
-=======
-		logger.debug("来自IP[" + request.getRemoteHost() + "]的访问");
->>>>>>> 3ad200c0081f9a1da9111dbe416e23f992d6cecb:SpringMVCShiro/src/main/java/com/stip/net/controller/UserControler.java
 		return "login";
 	}
 	
