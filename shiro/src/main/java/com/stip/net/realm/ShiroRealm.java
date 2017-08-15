@@ -35,7 +35,7 @@ public class ShiroRealm extends AuthorizingRealm {
 	}
 	
 	/**
-	 * 获取授权信息
+	 * 登录鉴权
 	 */
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
@@ -52,22 +52,33 @@ public class ShiroRealm extends AuthorizingRealm {
 	}
 
 	/**
-	 * 权限验证
+	 * 授权验证
 	 */
 	@Override
-	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		Set<String> roleNames = new HashSet<String>();
-	    Set<String> permissions = new HashSet<String>();
-	    
-	    roleNames.add("admin");
-	    roleNames.add("administrator");
-	    permissions.add("create");
-	    permissions.add("login.do?main");
-	    permissions.add("login.do?logout");
-		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roleNames);
-	    info.setStringPermissions(permissions);
-	    
-		return info;
+	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
+		//获取登录时输入的用户名
+        String loginName = (String)principalCollection.fromRealm(getName()).iterator().next();
+        //获取当前的用户名,跟上面的一样
+        String currentUsername = (String)super.getAvailablePrincipal(principalCollection);
+ 
+        User user = userServiceImpl.findUserByLoginName(loginName);
+        if (user != null) {
+            //权限信息对象info,用来存放查出的用户的所有的角色（role）及权限（permission）
+            SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
+ 
+            //用户的角色集合
+            simpleAuthorizationInfo.setRoles(user.getRolesName());
+ 
+            //对应角色的权限
+            List<TRole> roles = user.getRoles();
+            for (TRole role:roles){
+                simpleAuthorizationInfo.addStringPermissions(role.getPermissionName());
+            }
+ 
+ 
+            return simpleAuthorizationInfo;
+        }
+        return null;
 	}
 
 
