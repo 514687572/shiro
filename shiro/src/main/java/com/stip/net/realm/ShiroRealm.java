@@ -52,7 +52,7 @@ public class ShiroRealm extends AuthorizingRealm {
 	}
 
 	/**
-	 * 获取授权信息֤
+	 * 权限验证
 	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {

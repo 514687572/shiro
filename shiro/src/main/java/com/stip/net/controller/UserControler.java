@@ -65,16 +65,15 @@ public class UserControler {
 		String username = request.getParameter("username");
 		//取得 密码，并用MD5加密
 		String password = CipherUtil.generatePassword(request.getParameter("password"));
-		//String password = request.getParameter("password");
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 		
-		Subject currentUser = SecurityUtils.getSubject();
+		Subject subject = SecurityUtils.getSubject();
 		ModelAndView modelAndView =null;
 		try {
 			System.out.println("----------------------------");
-			if (!currentUser.isAuthenticated()){//使用shiro来验证
+			if (!subject.isAuthenticated()){//使用shiro来验证
 				token.setRememberMe(true);
-				currentUser.login(token);//验证角色和权限
+				subject.login(token);//验证角色和权限
 			}
 			modelAndView = new ModelAndView("index");
 		} catch (Exception e) {
@@ -91,9 +90,9 @@ public class UserControler {
      */
     @RequestMapping(value = "/logout")  
     public String logout() {  
-        Subject currentUser = SecurityUtils.getSubject();  
+        Subject subject = SecurityUtils.getSubject();  
         String result = "logout";  
-        currentUser.logout();
+        subject.logout();
         
         return result;  
     }  
@@ -104,8 +103,8 @@ public class UserControler {
      */
     @RequestMapping(value = "/chklogin", method = RequestMethod.POST)  
     public String chkLogin() {  
-        Subject currentUser = SecurityUtils.getSubject();  
-        if (!currentUser.isAuthenticated()) {  
+        Subject subject = SecurityUtils.getSubject();  
+        if (!subject.isAuthenticated()) {  
             return "false";  
         }  
         return "true";  
