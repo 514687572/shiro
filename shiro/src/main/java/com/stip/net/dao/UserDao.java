@@ -1,19 +1,11 @@
 package com.stip.net.dao;
 
-import com.stip.net.domain.User;
+import com.stip.mybatis.generator.plugin.GenericMapper;
+import com.stip.net.entity.sysAuthority;
+import com.stip.net.entity.sysAuthorityExample;
 
-public interface UserDao {
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(User record);
-
-    int insertSelective(User record);
-
-    User selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(User record);
-
-    int updateByPrimaryKey(User record);
-
-	User findUserByLoginName(String username);
+ /**
+ * generator XML
+ **/
+public interface UserDao extends GenericMapper<sysAuthority, sysAuthorityExample, Integer> {
 }
