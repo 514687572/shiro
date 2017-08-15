@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.stip.net.domain.User;
 import com.stip.net.realm.ShiroRealm;
@@ -36,6 +37,7 @@ public class UserControler {
 		User user = userService.getUserById(id);
 		System.out.println(user.getName());
 		request.setAttribute("user", user);
+		
 		return "showUser";
 	}
 	
@@ -45,9 +47,11 @@ public class UserControler {
 	 * @return
 	 */
 	@RequestMapping(value = "/login.do", method = { RequestMethod.POST,RequestMethod.GET})
-	public String tologin(HttpServletRequest request, HttpServletResponse response){
+	public ModelAndView tologin(HttpServletRequest request, HttpServletResponse response){
 		logger.info("来自IP[" + request.getRemoteHost() + "]的访问");
-		return "login";
+		ModelAndView modelAndView = new ModelAndView("login");
+
+		return modelAndView;
 	}
 	
 	/**
@@ -56,8 +60,7 @@ public class UserControler {
 	 * @return
 	 */
 	@RequestMapping("/checkLogin.do")
-	public String login(HttpServletRequest request) {
-		String result = "login.do";
+	public ModelAndView login(HttpServletRequest request) {
 		// 取得用户名
 		String username = request.getParameter("username");
 		//取得 密码，并用MD5加密
@@ -66,19 +69,20 @@ public class UserControler {
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 		
 		Subject currentUser = SecurityUtils.getSubject();
+		ModelAndView modelAndView =null;
 		try {
 			System.out.println("----------------------------");
 			if (!currentUser.isAuthenticated()){//使用shiro来验证
 				token.setRememberMe(true);
 				currentUser.login(token);//验证角色和权限
 			}
-			System.out.println("result: " + result);
-			result = "index";//验证成功
+			modelAndView = new ModelAndView("index");
 		} catch (Exception e) {
 			logger.error(e.getMessage());
-			result = "login.do";//验证失败
+			modelAndView = new ModelAndView("login");
 		}
-		return result;
+
+		return modelAndView;
 	}
   
     /**

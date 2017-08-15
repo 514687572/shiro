@@ -43,7 +43,7 @@ public class ShiroRealm extends AuthorizingRealm {
 		System.out.println(token.getUsername());
 		User user = userServiceImpl.findUserByLoginName(token.getUsername());
 		System.out.println(user);
-		CipherUtil cipher = new CipherUtil();//MD5����
+		CipherUtil cipher = new CipherUtil();//MD5加密
 		if (user != null) {
 			return new SimpleAuthenticationInfo(user.getName(), cipher.generatePassword(user.getPassword()), getName());
 		}else{
