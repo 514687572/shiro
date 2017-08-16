@@ -19,6 +19,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.CollectionUtils;
 
 import com.stip.net.entity.SysRole;
 import com.stip.net.entity.User;
@@ -69,14 +70,17 @@ public class ShiroRealm extends AuthorizingRealm {
             SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
  
             //用户的角色集合
-/*            simpleAuthorizationInfo.setRoles(user.getRolesName());
- 
-            //对应角色的权限
-            List<SysRole> roles = user.getRoles().split(";");
-            for (SysRole role:roles){
-                simpleAuthorizationInfo.addStringPermissions(role.getPermissionName());
-            }*/
- 
+            List<SysRole> roles = userServiceImpl.selectRoleByUserName(loginName);
+            Set roleSet=new HashSet();
+            String authors="";
+            for(SysRole role:roles){
+            	roleSet.add(role.getRoleName());
+            	authors+=role.getAuthList()+";";
+            }
+            String[] author=authors.split(";");
+            
+            simpleAuthorizationInfo.addStringPermissions(CollectionUtils.arrayToList(author));
+            simpleAuthorizationInfo.setRoles(roleSet);
  
             return simpleAuthorizationInfo;
         }
