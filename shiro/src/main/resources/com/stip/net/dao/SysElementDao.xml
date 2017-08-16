@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stip.net.dao.SysElementDao">
+  <resultMap id="BaseResultMap" type="com.stip.net.entity.SysElement">
+    <id column="sysElement_ELE_ID" jdbcType="BIGINT" property="eleId" />
+    <result column="sysElement_ELE_NAME" jdbcType="VARCHAR" property="eleName" />
+    <result column="sysElement_PARENT_ID" jdbcType="BIGINT" property="parentId" />
+    <result column="sysElement_ELE_CODE" jdbcType="VARCHAR" property="eleCode" />
+    <result column="sysElement_ELE_INDEX" jdbcType="BIGINT" property="eleIndex" />
+    <result column="sysElement_REMARK" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    sysElement.ELE_ID as sysElement_ELE_ID, sysElement.ELE_NAME as sysElement_ELE_NAME, 
+    sysElement.PARENT_ID as sysElement_PARENT_ID, sysElement.ELE_CODE as sysElement_ELE_CODE, 
+    sysElement.ELE_INDEX as sysElement_ELE_INDEX, sysElement.REMARK as sysElement_REMARK
+  </sql>
+  <select id="selectByExample" parameterType="com.stip.net.entity.SysElementExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_sys_element sysElement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="fromRowNum != null and toRowNum >= 0">
+      limit #{fromRowNum}, #{toRowNum}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_sys_element sysElement
+    where sysElement.ELE_ID = #{eleId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_sys_element
+    where ELE_ID = #{eleId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.stip.net.entity.SysElementExample">
+    delete from t_sys_element sysElement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.stip.net.entity.SysElement">
+    insert into t_sys_element (ELE_ID, ELE_NAME, PARENT_ID, 
+      ELE_CODE, ELE_INDEX, REMARK
+      )
+    values (#{eleId,jdbcType=BIGINT}, #{eleName,jdbcType=VARCHAR}, #{parentId,jdbcType=BIGINT}, 
+      #{eleCode,jdbcType=VARCHAR}, #{eleIndex,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.stip.net.entity.SysElement">
+    insert into t_sys_element
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="eleId != null">
+        ELE_ID,
+      </if>
+      <if test="eleName != null">
+        ELE_NAME,
+      </if>
+      <if test="parentId != null">
+        PARENT_ID,
+      </if>
+      <if test="eleCode != null">
+        ELE_CODE,
+      </if>
+      <if test="eleIndex != null">
+        ELE_INDEX,
+      </if>
+      <if test="remark != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="eleId != null">
+        #{eleId,jdbcType=BIGINT},
+      </if>
+      <if test="eleName != null">
+        #{eleName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="eleCode != null">
+        #{eleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="eleIndex != null">
+        #{eleIndex,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.stip.net.entity.SysElementExample" resultType="java.lang.Long">
+    select count(*) from t_sys_element sysElement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_sys_element sysElement
+    <set>
+      <if test="record.eleId != null">
+        sysElement.ELE_ID = #{record.eleId,jdbcType=BIGINT},
+      </if>
+      <if test="record.eleName != null">
+        sysElement.ELE_NAME = #{record.eleName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentId != null">
+        sysElement.PARENT_ID = #{record.parentId,jdbcType=BIGINT},
+      </if>
+      <if test="record.eleCode != null">
+        sysElement.ELE_CODE = #{record.eleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eleIndex != null">
+        sysElement.ELE_INDEX = #{record.eleIndex,jdbcType=BIGINT},
+      </if>
+      <if test="record.remark != null">
+        sysElement.REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_sys_element sysElement
+    set sysElement.ELE_ID = #{record.eleId,jdbcType=BIGINT},
+      sysElement.ELE_NAME = #{record.eleName,jdbcType=VARCHAR},
+      sysElement.PARENT_ID = #{record.parentId,jdbcType=BIGINT},
+      sysElement.ELE_CODE = #{record.eleCode,jdbcType=VARCHAR},
+      sysElement.ELE_INDEX = #{record.eleIndex,jdbcType=BIGINT},
+      sysElement.REMARK = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.stip.net.entity.SysElement">
+    update t_sys_element
+    <set>
+      <if test="eleName != null">
+        ELE_NAME = #{eleName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null">
+        PARENT_ID = #{parentId,jdbcType=BIGINT},
+      </if>
+      <if test="eleCode != null">
+        ELE_CODE = #{eleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="eleIndex != null">
+        ELE_INDEX = #{eleIndex,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null">
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ELE_ID = #{eleId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.stip.net.entity.SysElement">
+    update t_sys_element
+    set ELE_NAME = #{eleName,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=BIGINT},
+      ELE_CODE = #{eleCode,jdbcType=VARCHAR},
+      ELE_INDEX = #{eleIndex,jdbcType=BIGINT},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ELE_ID = #{eleId,jdbcType=BIGINT}
+  </update>
+</mapper>
