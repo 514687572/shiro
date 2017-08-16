@@ -55,6 +55,6 @@
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
-        <table tableName="t_sys_authority" alias="sysAuthority" mapperName="SysAuthorityDao" domainObjectName="SysAuthority"></table>
+        <table tableName="user" alias="user" mapperName="UserDao" domainObjectName="User"></table>
 	</context>
 </generatorConfiguration>
