@@ -43,15 +43,15 @@
 	    Sorry, you are not allowed to administer the system.  
 	</shiro:lacksRole>  
 	<p>八、验证当前用户是否属于以下任意一个角色。</p>
-	<shiro:hasAnyRoles name="developer,manager,administrator">
+	<shiro:hasAnyRoles name="manager,administrator">
 	    You are either a developer,manager, or administrator.  
 	</shiro:hasAnyRoles>
    <p>九、验证当前用户权限。</p>
-	<shiro:hasPermission name="create">  
+	<shiro:hasPermission name="select_button">  
 	  <p>当前用户拥有增加的权限！！！！！！！！！！！！！</p>
 	</shiro:hasPermission>  
 
-	<shiro:hasPermission name="delete">  
+	<shiro:hasPermission name="delete_button">  
 	   <p>当前用户拥有删除的权限！！！！！！！！！！！！！</p>
 	</shiro:hasPermission>  
 </body>
