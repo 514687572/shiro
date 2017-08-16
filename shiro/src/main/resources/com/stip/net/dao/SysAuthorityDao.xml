@@ -3,7 +3,7 @@
 <mapper namespace="com.stip.net.dao.SysAuthorityDao">
   <resultMap id="BaseResultMap" type="com.stip.net.entity.SysAuthority">
     <id column="sysAuthority_auth_id" jdbcType="INTEGER" property="authId" />
-    <result column="sysAuthority_user_id" jdbcType="INTEGER" property="userId" />
+    <result column="sysAuthority_auth_name" jdbcType="VARCHAR" property="authName" />
     <result column="sysAuthority_element_list" jdbcType="VARCHAR" property="elementList" />
     <result column="sysAuthority_remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
@@ -66,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    sysAuthority.auth_id as sysAuthority_auth_id, sysAuthority.user_id as sysAuthority_user_id, 
+    sysAuthority.auth_id as sysAuthority_auth_id, sysAuthority.auth_name as sysAuthority_auth_name, 
     sysAuthority.element_list as sysAuthority_element_list, sysAuthority.remark as sysAuthority_remark
   </sql>
   <select id="selectByExample" parameterType="com.stip.net.entity.SysAuthorityExample" resultMap="BaseResultMap">
@@ -103,9 +103,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.stip.net.entity.SysAuthority">
-    insert into t_sys_authority (auth_id, user_id, element_list, 
+    insert into t_sys_authority (auth_id, auth_name, element_list, 
       remark)
-    values (#{authId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{elementList,jdbcType=VARCHAR}, 
+    values (#{authId,jdbcType=INTEGER}, #{authName,jdbcType=VARCHAR}, #{elementList,jdbcType=VARCHAR}, 
       #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.stip.net.entity.SysAuthority">
@@ -114,8 +114,8 @@
       <if test="authId != null">
         auth_id,
       </if>
-      <if test="userId != null">
-        user_id,
+      <if test="authName != null">
+        auth_name,
       </if>
       <if test="elementList != null">
         element_list,
@@ -128,8 +128,8 @@
       <if test="authId != null">
         #{authId,jdbcType=INTEGER},
       </if>
-      <if test="userId != null">
-        #{userId,jdbcType=INTEGER},
+      <if test="authName != null">
+        #{authName,jdbcType=VARCHAR},
       </if>
       <if test="elementList != null">
         #{elementList,jdbcType=VARCHAR},
@@ -151,8 +151,8 @@
       <if test="record.authId != null">
         sysAuthority.auth_id = #{record.authId,jdbcType=INTEGER},
       </if>
-      <if test="record.userId != null">
-        sysAuthority.user_id = #{record.userId,jdbcType=INTEGER},
+      <if test="record.authName != null">
+        sysAuthority.auth_name = #{record.authName,jdbcType=VARCHAR},
       </if>
       <if test="record.elementList != null">
         sysAuthority.element_list = #{record.elementList,jdbcType=VARCHAR},
@@ -168,7 +168,7 @@
   <update id="updateByExample" parameterType="map">
     update t_sys_authority sysAuthority
     set sysAuthority.auth_id = #{record.authId,jdbcType=INTEGER},
-      sysAuthority.user_id = #{record.userId,jdbcType=INTEGER},
+      sysAuthority.auth_name = #{record.authName,jdbcType=VARCHAR},
       sysAuthority.element_list = #{record.elementList,jdbcType=VARCHAR},
       sysAuthority.remark = #{record.remark,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -178,8 +178,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.stip.net.entity.SysAuthority">
     update t_sys_authority
     <set>
-      <if test="userId != null">
-        user_id = #{userId,jdbcType=INTEGER},
+      <if test="authName != null">
+        auth_name = #{authName,jdbcType=VARCHAR},
       </if>
       <if test="elementList != null">
         element_list = #{elementList,jdbcType=VARCHAR},
@@ -192,7 +192,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.stip.net.entity.SysAuthority">
     update t_sys_authority
-    set user_id = #{userId,jdbcType=INTEGER},
+    set auth_name = #{authName,jdbcType=VARCHAR},
       element_list = #{elementList,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR}
     where auth_id = #{authId,jdbcType=INTEGER}
