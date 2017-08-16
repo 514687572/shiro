@@ -26,7 +26,7 @@
 	</shiro:user>
 	<p>三、已认证通过的用户。不包含已记住的用户，这是与user标签的区别所在。</p>
 	<shiro:authenticated>  
-    	<a href="updateAccount.jsp">Update your contact information</a>.  
+    	<a href="">Update your contact information</a>.  
 	</shiro:authenticated>
 	<p>四、未认证通过用户，与authenticated标签相对应。与guest标签的区别是，该标签包含已记住用户。</p>
 	<shiro:notAuthenticated>  
@@ -36,7 +36,7 @@
 	Hello, <shiro:principal/>, how are you today?  
 	<p>六、验证当前用户是否属于该角色</p>
 	<shiro:hasRole name="administrator">  
-	    <a href="admin.jsp">Administer the system</a>  
+	    <a href="">Administer the system</a>  
 	</shiro:hasRole>  
 	<p>七、与hasRole标签逻辑相反，当用户不属于该角色时验证通过</p>
 	<shiro:lacksRole name="administrator">  
