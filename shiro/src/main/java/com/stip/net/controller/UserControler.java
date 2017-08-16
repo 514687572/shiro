@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.stip.net.domain.User;
+import com.stip.net.entity.User;
 import com.stip.net.realm.ShiroRealm;
 import com.stip.net.service.UserService;
 import com.stip.net.utils.CipherUtil;

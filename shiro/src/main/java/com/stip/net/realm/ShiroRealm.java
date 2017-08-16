@@ -1,6 +1,7 @@
 package com.stip.net.realm;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -19,7 +20,8 @@ import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.stip.net.domain.User;
+import com.stip.net.entity.SysRole;
+import com.stip.net.entity.User;
 import com.stip.net.service.UserService;
 import com.stip.net.utils.CipherUtil;
 
@@ -67,13 +69,13 @@ public class ShiroRealm extends AuthorizingRealm {
             SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
  
             //用户的角色集合
-            simpleAuthorizationInfo.setRoles(user.getRolesName());
+/*            simpleAuthorizationInfo.setRoles(user.getRolesName());
  
             //对应角色的权限
-            List<TRole> roles = user.getRoles();
-            for (TRole role:roles){
+            List<SysRole> roles = user.getRoles().split(";");
+            for (SysRole role:roles){
                 simpleAuthorizationInfo.addStringPermissions(role.getPermissionName());
-            }
+            }*/
  
  
             return simpleAuthorizationInfo;

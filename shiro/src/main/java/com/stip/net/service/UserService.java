@@ -1,6 +1,6 @@
 package com.stip.net.service;
 
-import com.stip.net.domain.User;
+import com.stip.net.entity.User;
 
 public interface UserService {
 	public User getUserById(int id);
