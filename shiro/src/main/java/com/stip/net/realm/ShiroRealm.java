@@ -1,5 +1,6 @@
 package com.stip.net.realm;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -78,8 +79,12 @@ public class ShiroRealm extends AuthorizingRealm {
             	authors+=role.getAuthList()+";";
             }
             String[] author=authors.split(";");
+            List<Integer> listAuId=new ArrayList<Integer>();
+            for(String aut:author){
+            	listAuId.add(Integer.parseInt(aut));
+            }
             
-            simpleAuthorizationInfo.addStringPermissions(CollectionUtils.arrayToList(author));
+            simpleAuthorizationInfo.addStringPermissions(userServiceImpl.selectAuthorById(listAuId));
             simpleAuthorizationInfo.setRoles(roleSet);
  
             return simpleAuthorizationInfo;

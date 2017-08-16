@@ -1,5 +1,6 @@
 package com.stip.net.service;
 
+import java.util.Collection;
 import java.util.List;
 
 import com.stip.net.entity.SysRole;
@@ -11,4 +12,6 @@ public interface UserService {
 	public User findUserByLoginName(String username);
 	
 	public List<SysRole> selectRoleByUserName(String username);
+	
+	public Collection<String> selectAuthorById(List<Integer> listAuId);
 }
