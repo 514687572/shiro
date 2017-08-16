@@ -55,6 +55,6 @@
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
-        <table tableName="t_sys_role" alias="sysRole" mapperName="SysRole" domainObjectName="SysRole"></table>
+        <table tableName="t_sys_authority" alias="sysAuthority" mapperName="SysAuthority" domainObjectName="SysAuthority"></table>
 	</context>
 </generatorConfiguration>
