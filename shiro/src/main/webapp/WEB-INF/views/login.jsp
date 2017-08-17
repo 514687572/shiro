@@ -16,6 +16,7 @@
 	<form action="${ctx}/checkLogin.do" method="post">
 		username: <input type="text" name="username"><br>
 		password: <input type="password" name="password"><br>
+		记住: <input type="checkbox" name="rememberMe"><br>
 		<input type="submit" value="登录">
 	</form>
 </body>

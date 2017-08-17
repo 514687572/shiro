@@ -53,6 +53,7 @@
 
 	<shiro:hasPermission name="delete_button">  
 	   <p>当前用户拥有删除的权限！！！！！！！！！！！！！</p>
-	</shiro:hasPermission>  
+	</shiro:hasPermission>
+	<p>注解权限<a href="${ctx}/deleted">删除</a></p>  
 </body>
 </html>
