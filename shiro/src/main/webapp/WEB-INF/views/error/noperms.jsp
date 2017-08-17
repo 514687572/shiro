@@ -11,22 +11,5 @@
 
 	<body>
 		你无权访问该页面
-		<ul>
-			<li>
-				<h2>
-					<a target="_self" href="user.do?myjsp">myjsp</a>
-				</h2>
-			</li>
-			<li>
-				<h2>
-					<a target="_self" href="login.jsp">登录</a>
-				</h2>
-			</li>
-			<li>
-				<h2>
-					<a target="_self" href="login.do?logout">注销</a>
-				</h2>
-			</li>
-		</ul>
 	</body>
 </html>
