@@ -31,7 +31,7 @@
 		<property name="securityManager" ref="securityManager" />
 		<property name="loginUrl" value="/login.do" />
 		<property name="successUrl" value="/view/index.html" />
-		<property name="unauthorizedUrl" value="/error/noperms.jsp" />
+		<property name="unauthorizedUrl" value="/view/error/noperms.jsp" />
 		<property name="filterChainDefinitions">
 			<value>
 				/index.html = authc
