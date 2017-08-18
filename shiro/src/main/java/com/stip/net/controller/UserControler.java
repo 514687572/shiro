@@ -67,15 +67,24 @@ public class UserControler {
 		//取得 密码，并用MD5加密
 		String password = CipherUtil.generatePassword(request.getParameter("password"));
 		UsernamePasswordToken token = new UsernamePasswordToken(username, password);
+		token.setRememberMe(true);
 		
 		Subject subject = SecurityUtils.getSubject();
 		ModelAndView modelAndView =null;
 		try {
-			System.out.println("----------------------------");
+			System.out.println("----------------------------"+subject.isRemembered());
 			if (!subject.isAuthenticated()){//使用shiro来验证
 				token.setRememberMe(true);
 				subject.login(token);//验证角色和权限
 			}
+			
+			String principal = (String) subject.getPrincipal();
+			System.out.println(principal);
+         /*   String password = user.getPassword();
+            UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), password);
+            token.setRememberMe(true);
+            subject.login(token);//登录
+*/			
 			modelAndView = new ModelAndView("index");
 		} catch (Exception e) {
 			logger.error(e.getMessage());
