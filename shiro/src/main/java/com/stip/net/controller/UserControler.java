@@ -80,11 +80,7 @@ public class UserControler {
 			
 			String principal = (String) subject.getPrincipal();
 			System.out.println(principal);
-         /*   String password = user.getPassword();
-            UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), password);
-            token.setRememberMe(true);
-            subject.login(token);//登录
-*/			
+			
 			modelAndView = new ModelAndView("index");
 		} catch (Exception e) {
 			logger.error(e.getMessage());
