@@ -38,7 +38,7 @@
 				/checkLogin.do = anon
 				/login.do = anon
 				/logout.html = anon
-				/** = authc
+				/** = user
 			</value>
 		</property>
 	</bean>
