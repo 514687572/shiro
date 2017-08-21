@@ -50,7 +50,15 @@ public class UserControler {
 	@RequestMapping(value = "/login.do", method = { RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView tologin(HttpServletRequest request, HttpServletResponse response){
 		logger.info("来自IP[" + request.getRemoteHost() + "]的访问");
-		ModelAndView modelAndView = new ModelAndView("login");
+		
+		Subject subject = SecurityUtils.getSubject();
+		ModelAndView modelAndView =null;
+		
+		if(subject.isRemembered()){
+			modelAndView = new ModelAndView("index");
+		}else{
+			modelAndView = new ModelAndView("login");
+		}
 
 		return modelAndView;
 	}

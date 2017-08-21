@@ -18,15 +18,15 @@
 	<h1>Shiro登陆实例</h1><a href="${ctx}/logout.html">退出</a>
 	<p>一、验证当前用户是否为"访客"，即未认证（包含未记住）的用户</p>
 	<shiro:guest>  
-    	Hi there!  Please <a href="login.jsp">Login</a> or <a href="signup.jsp">Signup</a> today!  
+    	123 <a href="login.jsp">Login</a> or <a href="signup.jsp">登录</a>   
 	</shiro:guest>
 	<p>二、认证通过或已记住的用户</p>
 	<shiro:user>  
-    	Welcome back John!  Not John? Click <a href="login.jsp">here<a> to login. 
+    	不是你 <a href="login.jsp">here<a> 重新登录 
 	</shiro:user>
 	<p>三、已认证通过的用户。不包含已记住的用户，这是与user标签的区别所在。</p>
 	<shiro:authenticated>  
-    	<a href="">Update your contact information</a>.  
+    	<a href="">更新</a>.  
 	</shiro:authenticated>
 	<p>四、未认证通过用户，与authenticated标签相对应。与guest标签的区别是，该标签包含已记住用户。</p>
 	<shiro:notAuthenticated>  
